@@ -19,8 +19,16 @@ class BookController extends Controller
         return view('books.create');
     }
 
-    public function store()
+    public function store(Request $request)
     {
-        return view('books.index');
+
+        $books = Book::create([
+            'title',
+            'author',
+            'rating',
+            'memo',
+        ]);
+
+        return view('books.index', compact('books'));
     }
 }
