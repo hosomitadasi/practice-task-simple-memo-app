@@ -6,9 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+
     public function up(): void
     {
         Schema::create('books', function (Blueprint $table) {
@@ -16,14 +14,11 @@ return new class extends Migration
             $table->string('title');
             $table->string('author');
             $table->integer('rating');
-            $table->text('memo');
+            $table->text('memo')->nullable();
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('books');

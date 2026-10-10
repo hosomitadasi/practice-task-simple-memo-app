@@ -21,14 +21,15 @@ class BookController extends Controller
 
     public function store(Request $request)
     {
-
-        $books = Book::create([
-            'title',
-            'author',
-            'rating',
-            'memo',
+        $validated = $request->validate([
+            'title' => 'required',
+            'author' => 'required',
+            'rating' => 'required|integer|min:1|max:5',
+            'memo' => 'nullable|string|max:225',
         ]);
 
-        return view('books.index', compact('books'));
+        $book = Book::create($validated);
+
+        return redirect()->route('books.index', $book);
     }
 }
